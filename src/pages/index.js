@@ -1,12 +1,13 @@
 import React from "react"
 import Layout from "../components/Layout"
-import { Button } from "react-bootstrap"
+import Hero from "../components/Hero"
+import Event from "../components/Event"
 
 export default function Home() {
   return (
     <Layout>
-      Houston React Developers
-      <Button>Test</Button>
+      <Hero />
+      <Event />
     </Layout>
   )
 }
