@@ -45,6 +45,8 @@ const Wrapper = styled.div`
   background-color: #1e1f1e;
   background-image: url(${stars});
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
   min-height: calc(100vh - 7rem);
   h1 {
