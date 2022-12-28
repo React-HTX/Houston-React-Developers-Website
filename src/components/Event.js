@@ -1,5 +1,5 @@
 import * as React from "react"
-
+import { useStaticQuery, graphql } from "gatsby"
 import { createTheme, ThemeProvider } from "@mui/material"
 import cardex from "../assets/images/card-example.png"
 import Paper from "@mui/material/Paper"
@@ -38,6 +38,20 @@ const theme = createTheme({
 })
 
 const Event = () => {
+  const data = useStaticQuery(graphql`
+    {
+      allMeetupEvent(limit: 10) {
+        nodes {
+          id
+          name
+          description
+        }
+      }
+    }
+  `)
+
+  console.log(data)
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
