@@ -1,11 +1,17 @@
 import React from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import { Link } from "gatsby"
-import logo from "../assets/images/houston-react-developers-logo.png"
+import logo from "../assets/images/rocket-icon.png"
 
 const Navigation = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      // bg="dark"
+      variant="dark"
+      style={{ backgroundColor: "#1e1f1e" }}
+    >
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img
