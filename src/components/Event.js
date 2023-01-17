@@ -1,5 +1,7 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import ReactMarkdown from "react-markdown"
+import rehypeRaw from "rehype-raw"
+// import { useStaticQuery, graphql } from "gatsby"
 import { createTheme, ThemeProvider } from "@mui/material"
 import cardex from "../assets/images/card-example.png"
 import Paper from "@mui/material/Paper"
@@ -37,26 +39,29 @@ const theme = createTheme({
   },
 })
 
-const Event = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allMeetupEvent(limit: 10) {
-        nodes {
-          id
-          name
-          description
-        }
-      }
-    }
-  `)
+// const query = graphql`
+//   {
+//     allMeetupEvent(limit: 3) {
+//       nodes {
+//         id
+//         name
+//         local_date
+//         description
+//       }
+//     }
+//   }
+// `
 
-  console.log(data)
+const Event = ({ name, description, date }) => {
+  // const data = useStaticQuery(query)
+  // const { name, description, local_date: date } = data.allMeetupEvent.nodes[2]
+  let newDescription = description.replace(/(<([^>]+)>)/gi, "")
 
   return (
     <ThemeProvider theme={theme}>
       <Grid
         container
-        spacing={1}
+        spacing={3}
         sx={{ paddingTop: "2rem", paddingBottom: "2rem" }}
       >
         <Paper
@@ -84,7 +89,7 @@ const Event = () => {
                   </Avatar>
                 }
                 title="ALEX KONDOV"
-                subheader="July 14th, 2022 @ 11:00 AM CST"
+                subheader={date}
               />
               <CardMedia
                 component="img"
@@ -94,12 +99,17 @@ const Event = () => {
               />
               <CardContent>
                 <Typography variant="h5" color="secondary">
-                  React Architecture and Best Practices
+                  {name}
                 </Typography>
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  children={newDescription}
+                />
                 <Typography my={1} variant="body2" color="text.secondary">
-                  There are many resources that can teach you the little pieces.
+                  {newDescription}
+                  {/* There are many resources that can teach you the little pieces.
                   No one tells you how to put them together to build real
-                  applications.
+                  applications. */}
                 </Typography>
                 <Typography my={1} variant="body2" color="text.secondary">
                   Most applications need to be extended, modified and supported.
